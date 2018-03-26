@@ -1,4 +1,4 @@
-package com.deaddorks.engine_test.exceptions;
+package com.deaddorks.engine_test.level.exceptions;
 
 public class LevelLoadException extends RuntimeException
 {

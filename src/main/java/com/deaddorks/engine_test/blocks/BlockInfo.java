@@ -6,7 +6,8 @@ public enum BlockInfo
 	DIRT(0.365f, 0.25f, 0.216f, 1.0f),
 	STONE(0.38f, 0.38f, 0.38f, 1.0f),
 	AIR(0.698f, 0.922f, 0.95f, 1.0f),
-	LAVA(1.0f, 0.435f, 0.0f, 1.0f)
+	LAVA(1.0f, 0.435f, 0.0f, 1.0f),
+	WATER(0.102f, 0.137f, 0.494f, 1.0f)
 	;
 	
 	private final float c1, c2, c3, c4;

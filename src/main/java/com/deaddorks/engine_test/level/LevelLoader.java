@@ -1,9 +1,11 @@
 package com.deaddorks.engine_test.level;
 
-import com.deaddorks.engine_test.exceptions.FileReadException;
-import com.deaddorks.engine_test.exceptions.LevelFormatException;
-import com.deaddorks.engine_test.exceptions.LevelSizeTooSmallException;
-import com.deaddorks.engine_test.exceptions.VariedLineLengthException;
+import com.deaddorks.engine_test.level.exceptions.FileReadException;
+import com.deaddorks.engine_test.level.exceptions.LevelFormatException;
+import com.deaddorks.engine_test.level.exceptions.LevelSizeTooSmallException;
+import com.deaddorks.engine_test.level.exceptions.VariedLineLengthException;
+import com.deaddorks.engine_test.world.WorldInfo;
+import com.deaddorks.engine_test.world.WorldState;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -28,15 +30,15 @@ public class LevelLoader
 	private static final int MIN_LEVEL_WIDTH = 10;
 	private static final int MIN_LEVEL_HEIGHT = 10;
 	
-	private final int blockSize, windowWidth, windowHeight;
+	private final int blockSize;
+	private final WorldInfo worldInfo;
 	private final String locPath, extension;
 	
-	public LevelLoader(final int blockSize, final int windowWidth, final int widowHeight,
+	public LevelLoader(final int blockSize, final WorldInfo worldInfo,
 					   final String locPath, final String extension)
 	{
 		this.blockSize = blockSize;
-		this.windowWidth = windowWidth;
-		this.windowHeight = widowHeight;
+		this.worldInfo = worldInfo;
 		
 		this.locPath = locPath;
 		this.extension = extension;
@@ -65,7 +67,7 @@ public class LevelLoader
 		List<String> processed = preProcessLines(lines);
 		char[][] array = listToArray(levelName, size, processed);
 		
-		return new Level(levelName, array, size, new WorldInfo(blockSize, windowWidth, windowHeight));
+		return new Level(levelName, array, blockSize, size, worldInfo, new WorldState(0, 0));
 	}
 	
 	private static LevelSize getLevelSize(final String levelName, final List<String> lines)
